@@ -4,6 +4,7 @@ import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations;
+import edu.stanford.nlp.sentiment.SentimentCoreAnnotations.AnnotatedTree;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 import java.util.Properties;
@@ -28,7 +29,7 @@ public class Sentiment {
 	            //System.out.println(line);
 	            Annotation annotation = pipeline.process(line);
 	            for (CoreMap sentence :annotation.get(CoreAnnotations.SentencesAnnotation.class )) {
-	                Tree tree =	sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
+	                Tree tree =	sentence.get(AnnotatedTree.class);
 	                int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
 	                String partText = sentence.toString();
 	                if (partText.length() > longest) {
@@ -65,7 +66,7 @@ public class Sentiment {
 	            //System.out.println(line);
 	            Annotation annotation = pipeline.process(line);
 	            for (CoreMap sentence :annotation.get(CoreAnnotations.SentencesAnnotation.class )) {
-	                Tree tree =	sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
+	                Tree tree =	sentence.get(AnnotatedTree.class);
 	                int sentiment = RNNCoreAnnotations.getPredictedClass(tree);
 	                String partText = sentence.toString();
 	                if (partText.length() > longest) {

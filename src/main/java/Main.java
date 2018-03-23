@@ -6,8 +6,12 @@ public class Main {
 		Sentiment.init();
 		
 		try{
-			get("/hello/:name", (request, response) -> {
-			    return "Hello: " + Sentiment.findSentiment(request.params(("name")));
+			get("/sentiment/:name", (request, response) -> {
+			    return "Sentiment: " + Sentiment.findSentiment(request.params(("name")));
+			});
+			
+			post("/sentiment/:name", (request, response) -> {
+				return "Sentiment: " + Sentiment.findSentiment(request.params(("name")));
 			});
 			
 		}catch(Exception e){
